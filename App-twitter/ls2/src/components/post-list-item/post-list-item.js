@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './post-list-item.css';
 
+import PostModalDelete from '../post-modal-delete';
 
 export default class PostListItem extends Component {
     constructor(props) {
@@ -26,7 +27,7 @@ export default class PostListItem extends Component {
     }
 
     render () {
-        const {label} = this.props;
+        const {label, onDelete, onEdit} = this.props;
         const {important, like} = this.state;
         let classNames = 'app-list-item d-flex justify-content-between';
 
@@ -57,9 +58,17 @@ export default class PostListItem extends Component {
                     </button>
                     <button 
                         type="button" 
-                        className="btn-trash btn-sm">
+                        className="btn-trash btn-sm"
+                            onClick={onDelete}>
                             <i className="fa fa-trash-o"></i>
                     </button>
+                    <button 
+                        type="button" 
+                        className="btn-pencil btn-sm"
+                            onClick={onEdit}>
+                            <i className="fa fa-pencil"></i>
+                    </button>
+                    <PostModalDelete />
                     <i className="fa fa-heart"></i>
                 </div>
             </div>
