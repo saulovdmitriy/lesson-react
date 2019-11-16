@@ -1,25 +1,30 @@
 import React from 'react';
-
 import PostListItem from '../post-list-item/';
-
 import { ListGroup } from 'reactstrap';
 
 import './post-list.css'
 
-const PostList = ({posts, onDelete, onEdit}) => {
+const PostList = ({posts, onDelete, onToggleImportant, onToggleLiked,
+     onPostModalDelete, onToggle, onToggleModal, onSetTime, 
+     onPostEdit,  onPushMes}) => {
 
     const elements = posts.map((item) => {
         const {id, ...itemProps} = item;
-        if (typeof(item) == 'object') {
-            return (
-                <li key={id} className="list-group-item">
-                    <PostListItem  {...itemProps} 
-                        onDelete = {() => onDelete(id)} 
-                        // onEdit = {() => onEdit(label)}
-                    />
-                </li>
-            )
-        }
+        return (
+            <li key={id} className="list-group-item">
+                <PostListItem  {...itemProps} 
+                    onDelete={() => onDelete(id)}
+                    onToggleImportant={() => onToggleImportant(id)}
+                    onToggleLiked={() => onToggleLiked(id)}
+                    onPostModalDelete={() => onPostModalDelete(id)}
+                    // onToggle={() => onToggle(id)}
+                    onToggleModal={() => onToggleModal(id)}
+                    onSetTime={() => onSetTime(id)}
+                    onPostEdit={() => onPostEdit(id)}
+                    onPushMes={() => onPushMes(id)}
+                />
+            </li>
+        )
     });
 
     return (
